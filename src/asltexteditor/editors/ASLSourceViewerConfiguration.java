@@ -16,16 +16,18 @@ import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
+import org.eclipse.swt.graphics.RGB;
 
 
-public class ASLConfiguration extends SourceViewerConfiguration {
+
+public class ASLSourceViewerConfiguration extends SourceViewerConfiguration {
 	private ASLDoubleClickStrategy doubleClickStrategy;	
 	private ASLScanner scanner;
 	private ASLPlanScanner planScanner;
 	private ASLScopeScanner scopeScanner;
 	private ColorManager colorManager;
 
-	public ASLConfiguration(ColorManager colorManager) {
+	public ASLSourceViewerConfiguration(ColorManager colorManager) {
 		this.colorManager = colorManager;
 	}
 	
@@ -110,9 +112,16 @@ public class ASLConfiguration extends SourceViewerConfiguration {
 		// TODO Auto-generated method stub
 		ContentAssistant assistant = new ContentAssistant();
 		
-		IContentAssistProcessor processor = new ASLContentAssistProcessor();
+		IContentAssistProcessor processor = new ASLCompletionProcessor();
 		
 		assistant.setContentAssistProcessor(processor, ASLPartitionScanner.ASL_COMMENT);
+		
+		
+		assistant.enableAutoActivation(true);
+		assistant.setAutoActivationDelay(500);
+		assistant.setProposalPopupOrientation(IContentAssistant.PROPOSAL_OVERLAY);
+		assistant.setContextInformationPopupOrientation(IContentAssistant.CONTEXT_INFO_ABOVE);
+		assistant.setContextInformationPopupBackground(colorManager.getColor(new RGB(150, 150, 0)));
 		
 		
 		return super.getContentAssistant(sourceViewer);

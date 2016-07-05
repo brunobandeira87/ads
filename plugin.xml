@@ -9,8 +9,8 @@
             extensions="asl"
             icon="icons/sample.gif"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
-            class="asltexteditor.editors.ASLEditor"
-            id="asltexteditor.editors.ASLEditor">
+            class="asltexteditor.editors.ASLTextEditor"
+            id="asltexteditor.editors.ASLTextEditor">
       </editor>
    </extension>
 
