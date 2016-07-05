@@ -15,16 +15,19 @@ public class ASLScopeScanner extends RuleBasedScanner {
 		//IToken asl = new Token(new TextAttribute(manager.getColor(IASLColorConstants.STRING)));
 		
 		IToken asl = new Token(new TextAttribute(manager.getColor(IASLColorConstants.ASL_COMMENT)));
+		IToken semicolomn = new Token(new TextAttribute(manager.getColor(IASLColorConstants.TAG)));
 		
 		List<IRule> listRules = new ArrayList<IRule>();
 		//listRules.add(new SingleLineRule("//", "\n", asl));
 		listRules.add(new MultiLineRule("/*", "*/", asl));
+		//listRules.add(new SingleLineRule("", ";",semicolomn));
 		listRules.add(new WhitespaceRule(new ASLWhitespaceDetector()));
 		IRule[] allRules = new IRule[listRules.size()];
 		for (int i = 0; i < allRules.length; i++) {
 			allRules[i] = listRules.get(i);
 		}
 		setRules(allRules);
+		
 		
 		
 		/*
